@@ -1,82 +1,59 @@
-# Lightweight React Template for KAVIA
+# Recipe Explorer Frontend
 
-This project provides a minimal React template with a clean, modern UI and minimal dependencies.
+A modern, clean, light-themed React application to browse, search, view, and bookmark food recipes.
 
 ## Features
 
-- **Lightweight**: No heavy UI frameworks - uses only vanilla CSS and React
-- **Modern UI**: Clean, responsive design with KAVIA brand styling
-- **Fast**: Minimal dependencies for quick loading times
-- **Simple**: Easy to understand and modify
+- Browse recipes in a responsive grid
+- Search by recipe name or ingredient
+- View detailed recipe pages (ingredients and instructions)
+- Bookmark favorite recipes with a sidebar
+- Persist bookmarks in browser localStorage
+- Light theme with palette: primary #4CAF50, secondary #FF9800, accent #FFFFFF
 
-## Getting Started
+## Quick Start
 
-In the project directory, you can run:
+1. Install dependencies
+   - npm install
 
-### `npm start`
+2. Configure API base URL (optional)
+   - Copy `.env.example` to `.env` and set:
+     - REACT_APP_RECIPES_API_BASE=https://your-backend.example.com
 
-Runs the app in development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+   If not set, defaults to `/api`.
 
-### `npm test`
+3. Run locally
+   - npm start
+   - Open http://localhost:3000
 
-Launches the test runner in interactive watch mode.
+## Backend Integration
 
-### `npm run build`
+Assumes a backend named recipes_database provides endpoints:
+- GET {REACT_APP_RECIPES_API_BASE}/recipes
+- GET {REACT_APP_RECIPES_API_BASE}/recipes/search?name=<q>
+- GET {REACT_APP_RECIPES_API_BASE}/recipes/search?ingredient=<q>
+- GET {REACT_APP_RECIPES_API_BASE}/recipes/:id
+- Optional bookmarks sync:
+  - POST {REACT_APP_RECIPES_API_BASE}/bookmarks/:id
+  - DELETE {REACT_APP_RECIPES_API_BASE}/bookmarks/:id
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Configure the base URL with REACT_APP_RECIPES_API_BASE environment variable.
 
-## Customization
+## Scripts
 
-### Colors
+- npm start - start dev server
+- npm run build - production build
+- npm test - run tests
 
-The main brand colors are defined as CSS variables in `src/App.css`:
+## Project Structure
 
-```css
-:root {
-  --kavia-orange: #E87A41;
-  --kavia-dark: #1A1A1A;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
-}
-```
+- src/components - UI components (Header, SearchBar, RecipeCard, BookmarksSidebar)
+- src/pages - Pages (HomePage, RecipeDetailPage)
+- src/services - API and storage helpers
+- src/App.js - App shell and routing
+- src/App.css - Styles
 
-### Components
+## Notes
 
-This template uses pure HTML/CSS components instead of a UI framework. You can find component styles in `src/App.css`. 
-
-Common components include:
-- Buttons (`.btn`, `.btn-large`)
-- Container (`.container`)
-- Navigation (`.navbar`)
-- Typography (`.title`, `.subtitle`, `.description`)
-
-## Learn More
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Bookmarks are stored in localStorage and available offline.
+- The UI is responsive and adapts from mobile to desktop.
